@@ -1,0 +1,81 @@
+body {
+	overflow: hidden;
+	background-image: url("../imgs/wormz.png");
+}
+#browse-container {
+	width: 85vw;
+	float: right;
+	height: 100%;
+}
+#navbar {
+	display: flex;
+	background-color: rgba(211, 211, 211, 0.5);
+	/* background-image: url('../imgs/wormz.png'); */
+	/* background: none; */
+	/* width: 83%; */
+	/* float: right; */
+}
+#header {
+	font-size: 2rem;
+	margin: 0 1rem 0.25rem 1rem;
+}
+#nav {
+	margin-top: 0.5rem;
+}
+#main {
+	display: flex;
+}
+#news-container,
+#latest-news-container {
+	height: 48.4vw;
+	width: 15vw;
+	overflow: auto;
+	/* margin-left: 1rem;
+    margin-right: 1rem; */
+	background-color: rgba(211, 211, 211, 0.5);
+	/* background-image: url('../imgs/wormz.png'); */
+	/* background: none; */
+	/* border-radius: .5rem; */
+}
+.dropdown-menu {
+	width: 12.5rem;
+}
+#dropdown {
+    /* width: 20rem; */
+}
+#comment-closer {
+    font-size: .25rem;
+    float: left;
+    margin: 0 -3rem .25rem .25rem;
+}
+#comments {
+	max-height: 100px;
+	height: fit-content;
+    overflow: auto;
+    margin-top: .5rem;
+}
+.comment {
+	border-bottom: 2px black solid;
+}
+#_id {
+	display: none;
+}
+#slider {
+	width: 120%;
+}
+.article {
+	margin: 0 0.5rem 0 0.5rem;
+}
+#site-display,
+#latest-site-display {
+	/* flex: 1; */
+	height: 48.4vw;
+	background-color: rgba(255, 255, 255, 0.7);
+	/* background-image: url('../imgs/wormz.png'); */
+	/* border-radius: .5rem; */
+}
+#browser,
+#latest-browser {
+	height: 100%;
+	width: 100%;
+}
