@@ -10,10 +10,6 @@ body {
 #navbar {
 	display: flex;
 	background-color: rgba(211, 211, 211, 0.5);
-	/* background-image: url('../imgs/wormz.png'); */
-	/* background: none; */
-	/* width: 83%; */
-	/* float: right; */
 }
 #header {
 	font-size: 2rem;
@@ -30,32 +26,27 @@ body {
 	height: 48.4vw;
 	width: 15vw;
 	overflow: auto;
-	/* margin-left: 1rem;
-    margin-right: 1rem; */
 	background-color: rgba(211, 211, 211, 0.5);
-	/* background-image: url('../imgs/wormz.png'); */
-	/* background: none; */
-	/* border-radius: .5rem; */
 }
 .dropdown-menu {
 	width: 12.5rem;
 }
-#dropdown {
-    /* width: 20rem; */
-}
 #comment-closer {
-    font-size: .25rem;
-    float: left;
-    margin: 0 -3rem .25rem .25rem;
+	font-size: 0.25rem;
+	float: left;
+	margin: 0 -3rem 0.25rem 0.25rem;
 }
 #comments {
 	max-height: 100px;
 	height: fit-content;
-    overflow: auto;
-    margin-top: .5rem;
+	overflow: auto;
+	margin-top: 0.5rem;
 }
 .comment {
 	border-bottom: 2px black solid;
+}
+#delete-btn {
+	font-size: 0.25rem;
 }
 #_id {
 	display: none;
@@ -68,11 +59,8 @@ body {
 }
 #site-display,
 #latest-site-display {
-	/* flex: 1; */
 	height: 48.4vw;
 	background-color: rgba(255, 255, 255, 0.7);
-	/* background-image: url('../imgs/wormz.png'); */
-	/* border-radius: .5rem; */
 }
 #browser,
 #latest-browser {

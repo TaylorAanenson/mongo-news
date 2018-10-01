@@ -1,123 +1,129 @@
-// const Nightmare = require("nightmare");
-// const nightmare = Nightmare({ show: true });
-
 $(document).on("click", ".btn-info", function() {
 	$("#site-display").empty();
 	let link = $(this).attr("href");
 	let object = $("<object>");
-	//   nightmare
-	//     .goto(link)
-	//     // .evaluate(() => document.querySelector('.VDXfz').href)
-	//     .end()
-	//     .then(console.log)
-	//     .catch(error => {
-	//       console.error('Search failed:', error);
-	//     });
 	object.attr("id", "browser");
 	object.attr("data", link);
 	$("#site-display").append(object);
-	console.log(link);
 });
-
-// $(document).on("click", "#show-comments-btn",this, function() {
-//     $('#news-container').attr('style','overflow: visible;');
-// });
 
 $(document).on("click", "#comment-closer", function() {
-    // let elem = $(this);
-	// $('#news-container').attr('style','overflow: auto;');
-    $(this).parents("#dropdown").attr("class", "dropdown-menu text-center");
-    // console.log(a);
+	$(this)
+		.parents("#dropdown")
+		.attr("class", "dropdown-menu text-center");
 });
-
-// $(document).ready(function(){
 
 $(document).submit("#submit", function(event) {
-    // let elem = $(this);
-    console.log(event);
-    // console.log(elem);
-	// let name = $('#name').val();
-	// let message = $('#text-area').val();
-	// event.preventDefault();
-	// $.ajax({
-	//     url: '/news/comment',
-	//     type: 'POST',
-	//     data:
-	//     {
-	//         name: $('#name').val(),
-	//         message: $('#text-area').val()
-	//     },
-	//     success: function (data){
-	//         console.log(data);
-	//     },
-	//     error: function(jXHR,textStatus,errorThrown){
-	//         console.log(errorThrown);
-	//     }
-	// });
-	// return false;
-	// console.log(message,name);
-    // let thing = $('.article',this);
+	let id = $(event.target)
+		.closest("div")
+		.find("#_id")
+		.val();
+	let name = $(event.target)
+		.closest("div")
+		.find("#name")
+		.val();
+	let message = $(event.target)
+		.closest("div")
+		.find("#text-area")
+		.val();
 
-    // $.ajax({
-    //     url: '/',
-    //     type: 'get',
-    //     success: function (data){
-    //         console.log(data);
-    //     },
-    //     error: function(jXHR,textStatus,errorThrown){
-    //         console.log(errorThrown);
-    //     }
-    // })
+	event.preventDefault();
 
-	let comment = $("<div>");
+	$.ajax({
+		url: "/news/comment",
+		type: "post",
+		data: {
+			_id: id,
+			name: name,
+			message: message
+		},
+		error: function(jXHR, textStatus, errorThrown) {
+			console.log(errorThrown);
+		}
+	});
+
+	let comment = $("<form>");
 	comment.attr("class", "text-left comment");
+	comment.attr("method", "post");
+	comment.attr("action", "/news/delete-comment?_method=DELETE");
+	let inputId = $("<input>");
+	inputId.attr("type", "hidden");
+	inputId.attr("id", "_id");
+	inputId.attr("name", "_id");
+	inputId.attr("value", id);
+	let inputName = $("<input>");
+	inputName.attr("type", "hidden");
+	inputName.attr("name", "name");
+	inputName.attr("value", name);
+	let inputMessage = $("<input>");
+	inputMessage.attr("type", "hidden");
+	inputMessage.attr("name", "message");
+	inputMessage.attr("value", message);
 	let comName = $("<div>");
-	comName.text("Name: " + $(event.target).closest("div").find('#name').val());
+	comName.attr("id", "name");
+	comName.attr("name", "name");
+	comName.attr("value", name);
+	comName.text("Name: " + name);
 	let comMessage = $("<div>");
-    comMessage.text("Message: " + $(event.target).closest("div").find('#text-area').val());
-    let deleteBtn = $('<button>');
-    deleteBtn.attr('id','delete-btn');
-    deleteBtn.attr('class','btn btn-warning');
-    let id = $(event.target).closest("div").find('#_id').val();
-    deleteBtn.attr("value", id);
-    deleteBtn.text('delete comment');
-	comment.append(comName, comMessage, deleteBtn);
-	let a = $(event.target).closest("div").find('#comments').prepend(comment);
-    let b = $(event.target).closest('div').attr("class", "dropdown-menu text-center show");
-    console.log(a,b);
+	comMessage.attr("id", "message");
+	comMessage.attr("name", "message");
+	comMessage.attr("value", message);
+	comMessage.text("Message: " + message);
+	let deleteBtn = $("<button>");
+	deleteBtn.attr("id", "delete-btn");
+	deleteBtn.attr("class", "btn btn-warning");
+	deleteBtn.attr("type", "button");
+	deleteBtn.text("delete");
+	comment.append(
+		inputId,
+		inputName,
+		inputMessage,
+		comName,
+		comMessage,
+		deleteBtn
+	);
+	$(event.target)
+		.closest("div")
+		.find("#comments")
+		.prepend(comment);
+	$(event.target)
+		.closest("div")
+		.attr("class", "dropdown-menu text-center show");
 	let timer = setInterval("clearer()", 100);
 	clearer = () => {
-		let c = $(event.target).find("#name").val("");
-        let d = $(event.target).find("#text-area").val("");
-        clearInterval(timer);
-        console.log(c,d);
-    };
-    // event.stopPropagation();
+		$(event.target)
+			.find("#name")
+			.val("");
+		$(event.target)
+			.find("#text-area")
+			.val("");
+		clearInterval(timer);
+	};
 });
-
-// })
 
 $(document).on("click", "#delete-btn", function(event) {
-    let a = $(this).attr('value');
-    console.log(a);
+	let id = $(event.target)
+		.closest("div")
+		.find("#_id")
+		.attr("value");
+	let name = $(event.target)
+		.closest("div")
+		.find("#name")
+		.attr("value");
+	let message = $(event.target)
+		.closest("div")
+		.find("#message")
+		.attr("value");
+	event.preventDefault();
+	$.ajax({
+		method: "delete",
+		url: "/news/delete-comment",
+		data: { _id: id, name: name, message: message },
+		error: function(jXHR, textStatus, errorThrown) {
+			console.log(errorThrown);
+		}
+	});
+	$(event.target)
+		.closest("form")
+		.remove();
 });
-
-// $(document).on("click", "#news-container", function(event) {
-// $('#dropdown').attr('class','dropdown-menu text-center');
-// });
-
-// $('#site-display').ready(function(event){
-//     console.log(event);
-//     if ($('#browser').text() === ''){
-//         alert('sorry :(');
-//     }
-// })
-
-// nightmare
-//     .goto('https://news.google.com')
-//     .evaluate(() => document.querySelector('.VDXfz').href)
-//     .end()
-//     .then(console.log)
-//     .catch(error => {
-//         console.error('Search failed:', error)
-//     })
