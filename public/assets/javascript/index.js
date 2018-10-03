@@ -19,11 +19,11 @@ $(document).submit("#submit", function(event) {
 		.find("#_id")
 		.val();
 	let name = $(event.target)
-		.closest("div")
+		.closest("form")
 		.find("#name")
 		.val();
 	let message = $(event.target)
-		.closest("div")
+		.closest("form")
 		.find("#text-area")
 		.val();
 
@@ -89,16 +89,12 @@ $(document).submit("#submit", function(event) {
 	$(event.target)
 		.closest("div")
 		.attr("class", "dropdown-menu text-center show");
-	let timer = setInterval("clearer()", 100);
-	clearer = () => {
-		$(event.target)
-			.find("#name")
-			.val("");
-		$(event.target)
-			.find("#text-area")
-			.val("");
-		clearInterval(timer);
-	};
+	$(event.target)
+		.find("#name")
+		.val("");
+	$(event.target)
+		.find("#text-area")
+		.val("");
 });
 
 $(document).on("click", "#delete-btn", function(event) {

@@ -95,6 +95,7 @@ const fetcher = () => {
 				form.attr("id", "comment-form");
 				form.attr("class", "dropdown-item");
 				let id = $("<input>");
+				id.attr("type", "hidden");
 				id.attr("id", "_id");
 				id.attr("name", "_id");
 				id.attr("value", data[i]._id);

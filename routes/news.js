@@ -122,7 +122,7 @@ router.post("/comment", urlencodedParser, function(req, res) {
 			}
 		},
 		function(err, doc, lastErrorObject) {
-			console.log(err, lastErrorObject);
+			if (err) throw err, lastErrorObject;
 		}
 	);
 });
@@ -132,7 +132,7 @@ router.delete("/delete-comment", urlencodedParser, function(req, res) {
 		{ _id: mongojs.ObjectId(req.body._id) },
 		{ $pull: { comments: { name: req.body.name, message: req.body.message } } },
 		function(err, doc, lastErrorObject) {
-			console.log(err, lastErrorObject);
+			if (err) throw err, lastErrorObject;
 		}
 	);
 });

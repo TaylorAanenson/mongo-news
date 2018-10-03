@@ -1,6 +1,6 @@
 body {
 	overflow: hidden;
-	background-image: url("../imgs/wormz.png");
+	background-image: url("../images/wormz.png");
 }
 #browse-container {
 	width: 85vw;
@@ -47,9 +47,6 @@ body {
 }
 #delete-btn {
 	font-size: 0.25rem;
-}
-#_id {
-	display: none;
 }
 #slider {
 	width: 120%;
